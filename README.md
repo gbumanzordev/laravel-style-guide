@@ -6,11 +6,11 @@ This style guide is a compilation of online articles and existing documentation 
 
 This table is order alphabetically and therefore its order is not mandatory to be followed.
 
-1. [Configuration]()
+1. [Configuration](https://github.com/gbumanzor/laravel-style-guide#configuration)
 2. [Database Conventions]()
 3. [Design Patterns]()
 4. [Environment]()
-5. [Naming Conventions]()
+5. [Naming Conventions](https://github.com/gbumanzor/laravel-style-guide#naming-conventions)
 6. [Scalability]()
 7. [Testing]()
 
@@ -59,9 +59,10 @@ class DomainController extends Controller
 
 Your application key MUST be set. This is the APP_KEY variable in your `.env` file. You can generate one via `php artisan key:generate`
 
-###Package Configuration
-Custom or package configuration filename **must** be in snake_case.
+### Package Configuration
 
+Custom or package configuration filename **must** be in snake_case.
+\
 **Good:**
 
 ```php
