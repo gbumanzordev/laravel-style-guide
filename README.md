@@ -114,7 +114,8 @@ Controller names must start with a noun (in singular form) followed by the word 
 **Good:**
 
 ```php
-class ArticleController extends Controller {
+class ArticleController extends Controller
+{
   ...
 }
 ```
@@ -122,17 +123,20 @@ class ArticleController extends Controller {
 **Bad:**
 
 ```php
-class ArticlesController extends Controller {
+class ArticlesController extends Controller
+{
   ...
 }
 
 // or
-class wp_articlesController extends Controller {
+class wp_articlesController extends Controller
+{
   ...
 }
 
 // or
-class Article extends Controller {
+class Article extends Controller
+{
   ...
 }
 ```
@@ -144,26 +148,173 @@ class Article extends Controller {
 ```php
 class DomainController extends Controller
 {
-    public function index(){
+    public function index()
+    {
       // list domains
     }
-    public function create(){
+    public function create()
+    {
       // show create form
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
       // handle the form POST
     }
-    public function show($id){
+    public function show($id)
+    {
       // show a single domain
     }
-    public function edit($id){
+    public function edit($id)
+    {
       // show edit page
     }
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
       // handle show edit page POST
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
       // delete a domain
     }
 }
 ```
+
+**Bad:**
+
+```php
+class DomainController extends Controller
+{
+    public function list()
+    {
+      // list domains
+    }
+    public function create_or_save()
+    {
+      // show create form then handle save
+    }
+    public function show_edit($id)
+    {
+      // show a single domain then show edit page
+    }
+    public function delete($id)
+    {
+      // delete a domain
+    }
+}
+```
+
+### Models
+
+Model names **must** be in singular form with its first letter in uppercase:
+
+**Good:**
+
+```php
+class Flight extends Model
+{
+  ...
+}
+```
+
+**Bad:**
+
+```php
+class Flights extends Model
+{
+  ...
+}
+```
+
+`hasOne` or `belongsTo` relationship **must** be in singular form:
+
+**Good:**
+
+```php
+class User extends Model
+{
+  public function phone()
+  {
+    return $this->hasOne('App\Phone');
+  }
+}
+```
+
+**Bad:**
+
+```php
+class User extends Model
+{
+  public function phones()
+  {
+    return $this->hasOne('App\Phone');
+  }
+}
+```
+
+Any other relationships other than above, **must** be in plural form:
+
+Good:
+
+```php
+class Post extends Model
+{
+  public function comments()
+  {
+    return $this->hasMany('App\Comment');
+  }
+}
+```
+
+**Bad:**
+
+```php
+class Post extends Model
+{
+    public function comment()
+    {
+        return $this->hasMany('App\Comment');
+    }
+}
+```
+
+Model propierties **should** be in snake_case:
+
+**Good:**
+
+```php
+$user->created_at
+```
+
+**Bad:**
+
+```php
+$user->createdAt
+```
+
+Methods should be in camelCase:
+
+**Good:**
+
+```php
+class User extends Model
+{
+    public function scopePopular($query)
+    {
+        return $query->where('votes', '>', 100);
+    }
+}
+```
+
+**Bad:**
+
+```php
+class User extends Model
+{
+    public function scope_popular($query)
+    {
+        return $query->where('votes', '>', 100);
+    }
+}
+```
+
+### Functions:
